@@ -38,7 +38,7 @@ $(document).ready(function () {
     });
 
     var newOne;
-    
+
     $(document).on("click", "#addAnimalButton", function () {
         newOne = $('#addAnimal').val();
         if ($.inArray(newOne, namesArray) != -1) {
@@ -73,12 +73,11 @@ $(document).ready(function () {
         xhr.done(function (pictures) {
             if (!testing) {
                 picturesKeep = pictures;
+                $(".row").empty();
                 for (var i = 0; i < pictures.data.length; i++) {
-                    $(`#caption${i}`).text (`Rating: ${pictures.data[i].rating}`);
-                    $(`#pict${i}`).attr ('src', `${pictures.data[i].images.fixed_height_small_still.url}`);                    
-                    // $(".col").append (`<p class="caption">Rating: ${pictures.data[i].rating}</p>`);
-                    // $(".col").append(
-                    //     `<img class="img-responsive" id="pict${i}" src="${pictures.data[i].images.fixed_height_small_still.url}" frameBorder="0">`);
+                    $(`.row`).append(`<div class="col" id="${i}">`);
+                    $(`#${i}`).append(`<div class="caption">Rating: ${pictures.data[i].rating}</div>`);
+                    $(`#${i}`).append(`<img class="img-responsive" src="${pictures.data[i].images.fixed_height_small_still.url}">`);
                 }
             } else {
                 if (pictures.data.length > 0) {
@@ -88,7 +87,7 @@ $(document).ready(function () {
                 } else {
                     $("#addOneMsg").text('No pictures of ' + newOne + '. :-(');
                 }
-            return (pictures.data.length);
+                return (pictures.data.length);
             }
         });
     }
