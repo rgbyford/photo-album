@@ -42,7 +42,7 @@ $(document).ready(function () {
     $(document).on("click", "#addAnimalButton", function () {
         newOne = $('#addAnimal').val();
         if ($.inArray(newOne, namesArray) != -1) {
-            $("#addOneMsg").text('Already got ' + newOne + '!');
+            $("#addOneMsg").text(`Already got ${newOne}!`);
         } else {
             var qp = {
                 sp: 'animal*',
@@ -52,9 +52,10 @@ $(document).ready(function () {
             var xhr = $.get(urlToUse);
             xhr.done(function (animals) {
                 if (animals.length == 0) {
-                    $("#addOneMsg").text(newOne + ' is not an animal!');
+                    $("#addOneMsg").text(`${newOne} is not an animal!`);
                 } else {
                     buildPictures(newOne, true);
+                    $("#addOneMsg").text("");
                 }
             });
         }
@@ -75,12 +76,13 @@ $(document).ready(function () {
                 picturesKeep = pictures;
                 $(".row").empty();
                 for (var i = 0; i < pictures.data.length; i++) {
-                    $(`.row`).append(`<div class="col" id="${i}">`);
-                    $(`#${i}`).append(`<div class="caption">Rating: ${pictures.data[i].rating}</div>`);
-                    $(`#${i}`).append(`<img id="pict${i}" class="img-responsive" src="${pictures.data[i].images.fixed_height_small_still.url}">`);
+                    let newDiv = $('<div>').addClass("col").
+                    append(`<div class="caption">Rating: ${pictures.data[i].rating}</div>`).
+                    append(`<img id="pict${i}" class="img-responsive" src="${pictures.data[i].images.fixed_height_small_still.url}">`);
+                    $(".row").append(newDiv);
                 }
             } else {
-                if (pictures.data.length > 0) {
+                 if (pictures.data.length > 0) {
                     namesArray.push(newOne);
                     moving.push(false);
                     addButton(namesArray.length - 1);
