@@ -77,7 +77,7 @@ $(document).ready(function () {
                 for (var i = 0; i < pictures.data.length; i++) {
                     $(`.row`).append(`<div class="col" id="${i}">`);
                     $(`#${i}`).append(`<div class="caption">Rating: ${pictures.data[i].rating}</div>`);
-                    $(`#${i}`).append(`<img class="img-responsive" src="${pictures.data[i].images.fixed_height_small_still.url}">`);
+                    $(`#${i}`).append(`<img id="pict${i}" class="img-responsive" src="${pictures.data[i].images.fixed_height_small_still.url}">`);
                 }
             } else {
                 if (pictures.data.length > 0) {
