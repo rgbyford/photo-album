@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const apiKey = "PKC8Rfl2DIQL56w5cRipJlX30iISxJBv";
-    const apiUrl = 'http://api.giphy.com/v1/gifs/search';
+    const apiUrl = 'https://api.giphy.com/v1/gifs/search';
 
     const queryParams = {
         q: "",
