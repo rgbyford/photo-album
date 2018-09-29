@@ -48,7 +48,7 @@ $(document).ready(function () {
                 sp: 'animal*',
                 ml: newOne,
             }
-            var urlToUse = 'http://api.datamuse.com/words/?' + $.param(qp);
+            var urlToUse = 'https://api.datamuse.com/words/?' + $.param(qp);
             var xhr = $.get(urlToUse);
             xhr.done(function (animals) {
                 if (animals.length == 0) {
